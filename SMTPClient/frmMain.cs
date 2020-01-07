@@ -45,7 +45,7 @@ namespace SMTPClient
                     txtUserName.Text, txtPassword.Text, attachFile);
                 
                 // log information
-                if (attachFile.Trim().Length > 0)
+                if (attachFile!=null && attachFile.Trim().Length > 0)
                     log.Information("Email sending success to " + txtTo.Text + " with attach file " + attachFile);
                 else
                     log.Information("Email sending success to " + txtTo.Text + " without attachment.");
@@ -84,7 +84,7 @@ namespace SMTPClient
             {
                 MailMessage mail = new MailMessage(from, to, subject, body);
                 mail.IsBodyHtml = true;
-                if (attachFileName.Length > 0)
+                if (attachFileName!= null && attachFileName.Length > 0)
                 {
                     Attachment attachment;
                     attachment = new Attachment(attachFileName);
