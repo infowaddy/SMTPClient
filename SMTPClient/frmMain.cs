@@ -43,6 +43,7 @@ namespace SMTPClient
                     txtFrom.Text, comboServerName.Text,
                     txtPort.Text, chkRequiredSSL.Checked, 
                     txtUserName.Text, txtPassword.Text, attachFile);
+
                 
                 // log information
                 if (attachFile!=null && attachFile.Trim().Length > 0)
@@ -50,11 +51,11 @@ namespace SMTPClient
                 else
                     log.Information("Email sending success to " + txtTo.Text + " without attachment.");
                 
-                MessageBox.Show("Email send out ready! Check in your inbox " + txtTo.Text);
+                MessageBox.Show("Email send out ready! Check in your inbox " + txtTo.Text, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch(Exception ex){
                 log.Error(ex, "Error");
-                MessageBox.Show("Email sending Fail! Check error in the log file.");
+                MessageBox.Show("Email sending Fail! Check error in the log file.","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }            
         }
 
@@ -76,7 +77,7 @@ namespace SMTPClient
             
         }
 
-        public void SendMail(string subject, string to, string body,  
+        public async void SendMail(string subject, string to, string body,  
             string from, string SMTPServer, string SMTPPort, bool requiredSSL, 
             string userName, string password, string attachFileName)
         {
@@ -96,7 +97,7 @@ namespace SMTPClient
                 client.EnableSsl = requiredSSL;                
                 client.Credentials = new System.Net.NetworkCredential(userName, password);
                 
-                client.Send(mail);
+                await client.SendMailAsync(mail);
             }
             catch (Exception ex)
             {
@@ -135,6 +136,15 @@ namespace SMTPClient
                 attachFile = dlgOpenFile.FileName;
                 lblAttach.Text = Path.GetFileName(attachFile);
                 log.Information(Path.GetFileName(lblAttach.Text) + " file was choosed for email attachement.");
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("Are you sure, do you want to close?", "Close", MessageBoxButtons.YesNo, MessageBoxIcon.Question)== DialogResult.Yes)
+            {
+                this.Close();
+                this.Dispose(true);
             }
         }
     }

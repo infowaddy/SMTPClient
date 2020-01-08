@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.dlgOpenFile = new System.Windows.Forms.OpenFileDialog();
             this.btnSend = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,6 +50,7 @@
             this.btnAttach = new System.Windows.Forms.Button();
             this.webBody = new System.Windows.Forms.WebBrowser();
             this.lblAttach = new System.Windows.Forms.TextBox();
+            this.btnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // dlgOpenFile
@@ -57,7 +59,7 @@
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(644, 987);
+            this.btnSend.Location = new System.Drawing.Point(517, 987);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(129, 53);
             this.btnSend.TabIndex = 1;
@@ -203,7 +205,7 @@
             // 
             // btnAttach
             // 
-            this.btnAttach.Location = new System.Drawing.Point(501, 987);
+            this.btnAttach.Location = new System.Drawing.Point(383, 987);
             this.btnAttach.Name = "btnAttach";
             this.btnAttach.Size = new System.Drawing.Size(128, 53);
             this.btnAttach.TabIndex = 9;
@@ -233,6 +235,16 @@
             this.lblAttach.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.lblAttach.TextChanged += new System.EventHandler(this.txtUserName_TextChanged);
             // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(652, 987);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(129, 53);
+            this.btnClose.TabIndex = 1;
+            this.btnClose.Text = "&Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
@@ -257,8 +269,10 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSend);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SMTP Client Testing Tool";
@@ -291,6 +305,7 @@
         private System.Windows.Forms.Button btnAttach;
         private System.Windows.Forms.WebBrowser webBody;
         private System.Windows.Forms.TextBox lblAttach;
+        private System.Windows.Forms.Button btnClose;
     }
 }
 
